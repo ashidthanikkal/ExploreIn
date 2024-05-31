@@ -1,1 +1,1 @@
-export const base="http://localhost:8000"
+export const base="https://exploreinserver.onrender.com"

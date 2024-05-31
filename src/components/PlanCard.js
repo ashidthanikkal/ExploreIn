@@ -6,6 +6,7 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import { base } from '../services/base';
 
 function PlanCard({ data, update }) {
     const [show, setShow] = useState(false);
@@ -30,7 +31,7 @@ function PlanCard({ data, update }) {
 
     const handleClose = () => setShow(false);
     const handleShow = async (id) => {
-        const out = await axios.get(`http://localhost:8000/cards/${id}`);
+        const out = await axios.get(`${base}/cards/${id}`);
         setInputContent(out.data);
         setShow(true);
     };
