@@ -11,7 +11,7 @@ function Header() {
       <Navbar collapseOnSelect expand="lg" className="bg-body-tertiary" style={{position:'fixed',top:'0',width:'100%',zIndex:'10'}}>
         <Container>
           <Link to={'/'} style={{textDecoration:'none'}}><Navbar.Brand href="#home"><b>ExploreIn</b></Navbar.Brand></Link>
-          <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+          <Navbar.Toggle aria-controls="responsive-navbar-nav"  style={{ outline:"none",boxShadow: "none", border: "none"}}/>
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="me-auto">
               {/* <Nav.Link href="#features">Features</Nav.Link>
@@ -27,6 +27,10 @@ function Header() {
                   Separated link
                 </NavDropdown.Item>
               </NavDropdown> */}
+            </Nav>
+            <Nav>
+            <Nav.Link> <Link to={'/home'} style={{textDecoration:"none", color:"black"}}><h6>Home</h6></Link> </Nav.Link>
+            <Nav.Link> <Link to={'/about'} style={{textDecoration:"none", color:"black"}}><h6>About</h6></Link> </Nav.Link>
             </Nav>
           </Navbar.Collapse>
         </Container>

@@ -9,6 +9,7 @@ function Home() {
 
     const [addUpdates, setUpdates] = useState(false);
     const [allData, setData] = useState([]);
+    const[allDataCopy,setAllDataCopy]=useState([])
     const [deleteUpdate, setDeleteUpdate] = useState(false);
     const [currentPage, setCurrentPage] = useState(1);
     const [postsPerPage] = useState(8);
@@ -16,8 +17,9 @@ function Home() {
     const getData = async () => {
         const result = await accessDataApi();
         if (result.status >= 200 && result.status < 300) {
-            console.log(result.data);
+            
             setData(result.data);
+            setAllDataCopy(result.data)
         } else {
             alert('Data access failed');
         }
@@ -27,7 +29,9 @@ function Home() {
         getData();
     }, [addUpdates, deleteUpdate]);
 
-    console.log(allData);
+    useEffect(() => {
+        window.scrollTo(0, 0);
+      }, []);
 
     const lastPostIndex = currentPage * postsPerPage;
     const firstPostIndex = lastPostIndex - postsPerPage;
@@ -36,6 +40,11 @@ function Home() {
     const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
     const totalPages = Math.ceil(allData.length / postsPerPage);
+
+    const searchResult=(e)=>{
+        const sData=allDataCopy.filter(i=>i.title.toLowerCase().includes(e.target.value.toLowerCase()))
+        setData(sData);
+    }
 
     return (
         <div className='home 100vh'>
@@ -51,7 +60,7 @@ function Home() {
                         <div className='d-flex justify-content-center'>
                             <Add update={setUpdates}></Add>
                         </div>
-                        <input type="text" placeholder='Search your destination' className='form-control container mt-4' style={{ width: '100%' }} />
+                        <input type="text" placeholder='Search your destination' className='form-control container mt-4' style={{ width: '100%' }} onChange={(e)=>searchResult(e)} />
                     </Col>
                 </Row>
             </Container>
@@ -65,8 +74,12 @@ function Home() {
                                     currentPosts.map(data => (
                                         <PlanCard key={data.id} update={setDeleteUpdate} data={data}></PlanCard>
                                     ))
-                                ) : (
-                                    <h1>No Data found</h1>
+                                ) : 
+                                (
+                                    <img src="https://media0.giphy.com/media/OfdA9ssTZzVgBWJuB9/giphy.gif?cid=6c09b952ofllpx42f4njv510s1880qhm3o530khefaufqq17&ep=v1_internal_gif_by_id&rid=giphy.gif&ct=s" alt="" srcset="" 
+                                    style={{width:"300px"}}
+                                    />
+
                                 )
                             }
                         </div>

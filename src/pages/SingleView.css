@@ -1,7 +1,28 @@
 .single {
   background-color: black;
   color: white;
-  position: relative;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   text-align: center;
-  height: 100vh;
+}
+
+.plan-detail img {
+  max-width: 100%;
+  height: auto;
+  margin-bottom: 20px;
+}
+
+.plan-detail h1, .plan-detail p {
+  color: white;
+}
+
+.plan-detail .btn-primary {
+  background-color: #007bff;
+  border: none;
+}
+
+.plan-detail .btn-primary:hover {
+  background-color: #0056b3;
 }

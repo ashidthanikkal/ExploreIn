@@ -58,10 +58,10 @@
 
 .landing{
   background-color: black;
-  position: relative;
-  top: 50px;
-  height: 94vh;
-  color: beige;
+  /* position: relative; */
+  /* top: 50px; */
+  height: 100vh;
+  color: white;
   text-align: center;
 }
   

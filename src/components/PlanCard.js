@@ -8,6 +8,10 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { base } from '../services/base';
 
+import { ToastContainer, toast, Bounce } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+
 function PlanCard({ data, update }) {
     const [show, setShow] = useState(false);
     const [inputContent, setInputContent] = useState({});
@@ -52,15 +56,48 @@ function PlanCard({ data, update }) {
         const { title, about, itinerary, date, image } = cardInputs;
 
         if (!title || !about || !itinerary || !date || !image) {
-            alert('Please fill all fields');
+            // alert('Please fill all fields');
+            toast.warn('Please fill all datas', {
+                position: "top-right",
+                autoClose: 2000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "dark",
+                transition: Bounce,
+                });
         } else {
             const response = await editDataApi(inputContent.id, cardInputs);
             if (response.status >= 200 && response.status < 300) {
-                alert('Data updated successfully');
+                // alert('Data updated successfully');
+                toast.success('Data updated successfully', {
+                    position: "top-right",
+                    autoClose: 2000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "dark",
+                    transition: Bounce,
+                    });
                 handleClose();
                 update(prev=>!prev);
             } else {
-                alert('Data update failed');
+                // alert('Data update failed');
+                toast.error('Data update failed', {
+                    position: "top-right",
+                    autoClose: 2000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "dark",
+                    transition: Bounce,
+                    });
             }
         }
     };
@@ -80,12 +117,12 @@ function PlanCard({ data, update }) {
                 >
                     <Card.Img variant='top' src={data.image} style={{ height: '200px' }} />
                     <Card.Body>
-                        <Card.Title style={{ height: '20px' }}>
+                        <Card.Title >
                             <b>{data.title}</b>
                         </Card.Title>
-                        <span>Itinerary: <b>{data.itinerary}</b></span>
+                        <div style={{ height: '40px' }}><span >Itinerary: <b>{data.itinerary}</b></span></div>
                         <Card.Text className='py-2'>
-                            <p>{data.about?.length > 90 ? data.about.slice(0, 90) + '...' : data.about}<Link to={`/single_view/${data.id}`} >view More</Link></p>
+                            <p>{data.about?.length > 85 ? data.about.slice(0, 85) + '...' : data.about}<Link to={`/single_view/${data.id}`} >view More</Link></p>
                             <h6>Planned Date: {data.date}</h6>
                         </Card.Text>
                         <span className='d-flex justify-content-between align-items-center'>

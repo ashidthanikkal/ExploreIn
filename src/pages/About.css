@@ -1,0 +1,21 @@
+/* About.css */
+.about {
+    background-color: black;
+    color: white;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    text-align: center;
+}
+
+.about h1 {
+    margin-bottom: 20px;
+}
+
+.about p {
+    max-width: 800px;
+    line-height: 1.6;
+}

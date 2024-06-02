@@ -3,6 +3,9 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import './Add.css'
 import { addDataApi } from '../services/allApis';
+
+import { ToastContainer, toast, Bounce } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
  
 function Add({update}) {
 
@@ -39,7 +42,19 @@ function Add({update}) {
         const {title,about,itinerary,date,image}=cardInputs
 
         if(title==""||about==""||itinerary==""||date==""||image==""){
-            alert("please fill all datas")
+            // alert("please fill all datas")
+            toast.warn('please fill all datas', {
+                position: "top-right",
+                autoClose: 2000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "dark",
+                transition: Bounce,
+                });
+
         }
         else{
         //    const out=await addDataApi(cardInputs)
@@ -49,12 +64,36 @@ function Add({update}) {
         console.log(out);
 
         if(out.status>=200 && out.status<300 ){
-            alert('Data added successfully')
+            // alert('Data added successfully')
+            toast.success('Data added successfully', {
+                position: "top-right",
+                autoClose: 2000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "dark",
+                transition: Bounce,
+                });
+
+
             handleClose()
             update(prev=>!prev)
         }
         else{
-            alert('Data adding failed')
+            // alert('Data adding failed')
+            toast.error('Data update failed', {
+                position: "top-right",
+                autoClose: 2000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "dark",
+                transition: Bounce,
+                });
 
         }
         }
@@ -87,6 +126,7 @@ function Add({update}) {
                     </Button>
                 </Modal.Footer>
             </Modal>
+            <ToastContainer />
         </div>
     )
 }

@@ -1,9 +1,12 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import './Landing.css'
 import { Link } from 'react-router-dom'
 
 
 function Landing() {
+    useEffect(() => {
+        window.scrollTo(0, 0);
+      }, []);
     return (
         <div className='landing d-flex flex-column justify-content-center align-items-center' >
 
