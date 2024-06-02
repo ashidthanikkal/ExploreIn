@@ -39,7 +39,8 @@ function PlanDetail() {
                 <Container className="plan-detail py-4">
                     <Row className="mt-5 align-items-center justify-content-center">
                         <Col xs={12} md={6} className="mb-4">
-                            <img src={plan.image} alt={plan.title} className="img-fluid rounded" />
+                            <img src={plan.image} alt={plan.title} className="img-fluid rounded"
+                            style={{width:"100%"}} />
                         </Col>
                         <Col xs={12} md={6}>
                             <h1>{plan.title}</h1>
